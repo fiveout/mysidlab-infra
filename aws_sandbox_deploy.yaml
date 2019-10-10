@@ -1,23 +1,28 @@
+---
+
 - name: Create a sandbox instance
   hosts: localhost
   gather_facts: False
   vars:
-    keypair: my_keypair
-    instance_type: m1.small
-    security_group: my_securitygroup
-    image: my_ami_id
-    region: us-east-1
+    keypair: us-jhooker-aws-admin
+    instance_type: t2.micro
+    security_group: ansible-security-group
+    image: ami-0520e698dd500b1d1
+    region: us-east-2
   tasks:
     - name: Launch instance
       ec2:
-         key_name: "{{ keypair }}"
-         group: "{{ security_group }}"
-         instance_type: "{{ instance_type }}"
-         image: "{{ image }}"
-         wait: true
-         region: "{{ region }}"
-         vpc_subnet_id: subnet-29e63245
-         assign_public_ip: yes
+        key_name: "{{ keypair }}"
+        group: "{{ security_group }}"
+        instance_type: "{{ instance_type }}"
+        image: "{{ image }}"
+        wait: true
+        region: "{{ region }}"
+        vpc_subnet_id: subnet-e45a7a8c
+        assign_public_ip: yes
+        instance_tags:
+          Name: "Jonathan's Awesome Instance"
+          location: ohio-ansible-cluster
       register: ec2
 
     - name: Add new instance to host group
@@ -32,6 +37,11 @@
         delay: 60
         timeout: 320
       loop: "{{ ec2.instances }}"
+    
+    - name: Print out ip of instance
+      debug:
+        msg: "IP of new instance(s): {{ item.public_ip }}"
+      loop: "{{ ec2.instances }}"
 
 - name: Configure instance(s)
   hosts: launched
@@ -41,10 +51,3 @@
     - my_awesome_role
     - my_awesome_test
 
-- name: Terminate instances
-  hosts: localhost
-  tasks:
-    - name: Terminate instances that were previously launched
-      ec2:
-        state: 'absent'
-        instance_ids: '{{ ec2.instance_ids }}'
