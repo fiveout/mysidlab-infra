@@ -34,10 +34,11 @@
         owner: www-data
         group: www-data
         mode: 0755
-    - name: Copy files to remote host
-      copy:
-        src: files/my-application
-        dest: /opt/my-application
-        owner: appuser
-        group: appuser
-        mode: 0755
+
+- name: Copy files to remote host
+    copy:
+      src: files/hello-world-webapp
+      dest: /var/www/html
+      owner: appuser
+      group: appuser
+      mode: 0755

@@ -49,5 +49,3 @@
   gather_facts: True
   roles:
     - my_awesome_role
-    - my_awesome_test
-
