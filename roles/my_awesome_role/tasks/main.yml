@@ -20,8 +20,8 @@
   file:
     state: directory
     path: /var/www/html
-    owner: www-data
-    group: www-data
+    owner: apache
+    group: apache
     mode: 0755
 
 - name: Copy files to remote host
