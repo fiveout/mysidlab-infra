@@ -97,6 +97,7 @@ h1 {
     background: #0589AD;
 }
 .cat {
+    position: absolute;
     width: 264px;
     height: 398px;
     background: url(../img/cat2.png);
