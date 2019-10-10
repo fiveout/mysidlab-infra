@@ -1,0 +1,43 @@
+---
+- name: Install vim, wget, and apache
+  yum:
+    name: "{{ packages }}"
+  vars:
+    packages:
+    - vim
+    - wget
+    - httpd
+    - httpd-tools
+
+# Configure apache
+- name: Ensure httpd is running
+    service:
+      name: httpd 
+      state: started
+
+- name: Open port 80 for http access
+    firewalld:
+      service: http
+      permanent: true
+      state: enabled
+
+- name: Restart the firewalld service to load in the firewall changes
+    service: 
+      name: firewalld 
+      state: restarted
+
+# Deploy apache hello world app
+- name: Create install directory
+      file:
+        state: directory
+        path: /var/www/html
+        owner: www-data
+        group: www-data
+        mode: 0755
+    - name: Copy files to remote host
+      copy:
+        src: files/my-application
+        dest: /opt/my-application
+        owner: appuser
+        group: appuser
+        mode: 0755
