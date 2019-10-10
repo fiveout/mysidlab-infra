@@ -28,6 +28,6 @@
   copy:
     src: files/hello-world-webapp
     dest: /var/www/html
-    owner: appuser
-    group: appuser
+    owner: apache
+    group: apache
     mode: 0755
