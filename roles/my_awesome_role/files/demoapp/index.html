@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        
+        <link rel="stylesheet" href="css/followeyes.css">
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+        <script src="js/followeyes.js"></script>
+
+        <script>
+            jQuery(document).ready(function() {
+                $().followeyes({
+                    eyeBall: 'eye-ball',    // default 'eye-ball'
+                    eyePupil: 'eye-pupil',  // default 'eye-pupil'
+                    radius: 12              // default 10
+                });
+            });
+        </script>
+
+        <title>:) followeyes.js</title>
+    </head>
+
+    <body>
+
+        <div id="wrapper">
+            <div id="main">
+                <div class="cat">
+                    <div class="eye-ball">
+                        <div class="eye-pupil"></div>
+                    </div>
+                    <div class="eye-ball">
+                        <div class="eye-pupil"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="footer">
+            
+        </div>
+
+    </body>
+
+</html>
