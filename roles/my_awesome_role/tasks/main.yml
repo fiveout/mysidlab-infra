@@ -1,6 +1,6 @@
 ---
 - name: Install vim, wget, and apache
-  yum:
+  package:
     name: "{{ packages }}"
     state: present
   vars:
