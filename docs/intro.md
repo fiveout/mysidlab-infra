@@ -75,7 +75,35 @@ This lab will provision a small virtual machine on AWS and deploy a simple web a
 
 The first step in configuring Ansible Tower is to create an integration to the personal GitHub repository that you created above.  This is done by creating a new Project in Tower.
 
-4.  Choose Project from the left-hand navigation menu and then the green "+" to add a new project.  Complete the new project information as below.  Note that the "
-SCM URL" field should contain the GitHub repository URL you copied to your clipboard previously.
-
+4.  Choose Project from the left-hand navigation menu and then the green "+" to add a new project.  Complete and save the new project information as below.  Note that the "SCM URL" field should contain the GitHub repository URL you copied to your clipboard previously.
 ![Tower Project](images/tower-create-project.png)
+
+You can now configure Ansible Tower to run an automation job that is in your GitHub repository.  This job will provision as small VM instance on AWS and then deploy a simple web app to it.
+
+5.  Choose Template from the left-hand navigation menu and then the green "+" to add a new template.  Complete and save the new template information as below.
+![Tower Template](images/tower-create-template.png)
+
+Let's take a look at the two YAML documents that define the "steps" that Ansible will take.  In your GitHub repository, open the aws_sandbox_deploy.yml document.  A few things to note --
+
+    a. The "vars" section defines several variables that will be passed to AWS when the VM instance is provisioned.
+
+    b. The "tasks" section defines a series of "state requirements" that will be reviewed to make sure that they exist.
+
+    c. The final entry (Ensure sample application is available) references a role that is defined seperately in the roles/my_awesome_role directory of your repository.  This referenced role will be executed as the final step of the job.
+
+6. After your Template definition has been saved, you can create and run a Job based off it.  Select Template from the left-hand navigation menu and then click the Rocket icon next to your template to create and execute the Job.
+
+    A running log of the job actions will be displayed and refreshed automatically.
+
+    ![Tower Job Monitor](images/tower-job-monitor.png)
+
+7. When the Job completes a summary (Play Recap) will be displayed.  Take note of the IP address and if there were any errors during the Job.
+
+    ![Tower Job Recap](images/tower-job-recap.png)
+
+8. Confirm that the VM instance was created and the demo web app was deployed properly by hitting the application at the IP address in the recap.
+
+    ![Demo App](images/demoapp.png)
+
+9. In Tower, select My View from the left-hand navigation menu  Note that a complete history your executed Jobs is maintained and available for review.
+    ![Tower My View](images/tower-my-view.png)
