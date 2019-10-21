@@ -1,15 +1,15 @@
-Introduction to Red Hat Ansible Immersion Lab
+# Introduction to Red Hat Ansible Immersion Lab
 
 Table Of Contents
 1. Preface
     1. [Confidentiality, Copyright and Disclaimer](#confid)
-    1. [About Sirius](#aboutsirius)
 1. [About This Document](#aboutdoc)
-1. Lab Introduction
-    1. Goals
-    1. The Environment
+1. [Lab Introduction](#lab-intro)
+    1. [Goals](#lab-goals)
+    1. [The Environment](#lab-env)
 1. Labs
-    1. Lab 1: Provision EC2 Instance & Deploy Sample Application 
+    1. [Prerequisites](#lab-pre)
+    1. [Lab 1: Provision EC2 Instance & Deploy Sample Application](#lab-1)
 
 ## Preface
 
@@ -21,18 +21,16 @@ This is a Customer-facing document between Sirius Computer Solutions, Inc. and i
 
 #### This document is not a quote and does not include any binding commitments by Sirius
 
-### <a name="aboutsirius">About Sirius</a>
-
 ## <a name="aboutdoc">About This Documement</a>
 
 This document provides information relevant to the following work:
 Introductory Ansible training for roles interested in automating common data center tasks.
 
-## Lab Introduction
+## <a name="lab-intro">Lab Introduction</a>
 
-### Goals
+### <a name="lab-goals">Goals</a>
 
-### The Environment
+### <a name="lab-env">The Environment</a>
 
 The labs will use an environment consisting of:
 1.  Individual GitHub accounts and source code repositories.  Each attendee will need to have their own GitHub account (see Prerequisites).
@@ -41,7 +39,9 @@ The labs will use an environment consisting of:
 
 Each attendee will have an Ansible Tower account assigned to them (siduser1 - siduser12).  The password will be provided.
 
-### Prerequisites
+## Labs
+
+### <a name="lab-pre">Prerequisites</a>
 
 Each attendee will need to have their own GitHub account.  To create an account, visit https://github.com and click on "Sign up".
 
@@ -49,9 +49,7 @@ Each attendee will need to have their own GitHub account.  To create an account,
 
 There are no other prerequisites or software required on your workstation other than a browser.  The labs are entirely browser-based.
 
-## Labs
-
-### Lab 1: Provision EC2 Instance & Deploy Sample Application
+### <a name="lab-1">Lab 1: Provision EC2 Instance & Deploy Sample Application</a>
 
 This lab will provision a small virtual machine on AWS and deploy a simple web application to it.
 
@@ -106,4 +104,5 @@ c. The final entry (Ensure sample application is available) references a role th
     ![Demo App](images/demoapp.png)
 
 9. In Tower, select My View from the left-hand navigation menu  Note that a complete history of your executed Jobs is maintained and available for review.
+    
     ![Tower My View](images/tower-my-view.png)
