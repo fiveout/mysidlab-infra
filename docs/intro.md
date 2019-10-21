@@ -35,7 +35,7 @@ Introductory Ansible training for roles interested in automating common data cen
 ### The Environment
 
 The labs will use an environment consisting of:
-1.  Indiviudal GitHub accounts and source code repositories.  Each attendee will need to have their own GitHub account (see Prerequisites).
+1.  Individual GitHub accounts and source code repositories.  Each attendee will need to have their own GitHub account (see Prerequisites).
 2.  Ansible Automation Tower.
 3.  Amazon AWS.
 
@@ -62,9 +62,9 @@ This lab will provision a small virtual machine on AWS and deploy a simple web a
 
     ![GitHub Fork](images/github-fork.png)
 
-    A copy of the repository will be made and located in your GitHub workspace.  Note that that URL will have changed to reflect your individual account.
+    A copy of the repository will be created and located in your GitHub workspace.  Note that that URL will have changed to reflect your individual account.
 
-    Take note of that new URL by select "Clone or download" and then copying it to your clipboard.  You'll need this URL when configuring your Ansible Tower project.  
+    Take note of that new URL by selecting "Clone or download" and then copying it to your clipboard.  You'll need this URL when configuring your Ansible Tower project.  
 
     ![GitHub URL](images/github-url.png)
 
@@ -73,37 +73,37 @@ This lab will provision a small virtual machine on AWS and deploy a simple web a
 1. Login with your assigned USERNAME (siduser1-siduser12) and PASSWORD.
 ![Login Page](images/login.png)
 
-The first step in configuring Ansible Tower is to create an integration to the personal GitHub repository that you created above.  This is done by creating a new Project in Tower.
+#### The first step in configuring Ansible Tower is to create an integration to the personal GitHub repository that you created above.  This is done by creating a new Project in Tower.
 
 4.  Choose Project from the left-hand navigation menu and then the green "+" to add a new project.  Complete and save the new project information as below.  Note that the "SCM URL" field should contain the GitHub repository URL you copied to your clipboard previously.
 ![Tower Project](images/tower-create-project.png)
 
-You can now configure Ansible Tower to run an automation job that is in your GitHub repository.  This job will provision as small VM instance on AWS and then deploy a simple web app to it.
+#### You can now configure Ansible Tower to run an automation job that is in your GitHub repository.  This job will provision as small VM instance on AWS and then deploy a simple web app to it.
 
 5.  Choose Template from the left-hand navigation menu and then the green "+" to add a new template.  Complete and save the new template information as below.
 ![Tower Template](images/tower-create-template.png)
 
-Let's take a look at the two YAML documents that define the "steps" that Ansible will take.  In your GitHub repository, open the aws_sandbox_deploy.yml document.  A few things to note --
+#### Let's take a look at the two YAML documents that define the "steps" that Ansible will take.  In your GitHub repository, open the aws_sandbox_deploy.yml document.  A few things to note --
 
-    a. The "vars" section defines several variables that will be passed to AWS when the VM instance is provisioned.
+a. The "vars" section defines several variables that will be passed to AWS when the VM instance is provisioned.
 
-    b. The "tasks" section defines a series of "state requirements" that will be reviewed to make sure that they exist.
+b. The "tasks" section defines a series of "state requirements" that will be reviewed to make sure that they exist.
 
-    c. The final entry (Ensure sample application is available) references a role that is defined seperately in the roles/my_awesome_role directory of your repository.  This referenced role will be executed as the final step of the job.
+c. The final entry (Ensure sample application is available) references a role that is defined seperately in the roles/my_awesome_role directory of your repository.  This referenced role will be executed as the final step of the job.
 
-6. After your Template definition has been saved, you can create and run a Job based off it.  Select Template from the left-hand navigation menu and then click the Rocket icon next to your template to create and execute the Job.
+6. After your Template definition has been saved, you can create and run a Job based off it.  Select Template from the left-hand navigation menu and then click the rocket icon next to your template to create and execute the Job.
 
     A running log of the job actions will be displayed and refreshed automatically.
 
     ![Tower Job Monitor](images/tower-job-monitor.png)
 
-7. When the Job completes a summary (Play Recap) will be displayed.  Take note of the IP address and if there were any errors during the Job.
+7. When the Job completes, a summary (Play Recap) will be displayed.  Take note of the IP address and if there were any errors during the Job.
 
     ![Tower Job Recap](images/tower-job-recap.png)
 
-8. Confirm that the VM instance was created and the demo web app was deployed properly by hitting the application at the IP address in the recap.
+8. Confirm that the VM instance was created and the demo web app was deployed properly by running the application at the IP address in the recap.
 
     ![Demo App](images/demoapp.png)
 
-9. In Tower, select My View from the left-hand navigation menu  Note that a complete history your executed Jobs is maintained and available for review.
+9. In Tower, select My View from the left-hand navigation menu  Note that a complete history of your executed Jobs is maintained and available for review.
     ![Tower My View](images/tower-my-view.png)
