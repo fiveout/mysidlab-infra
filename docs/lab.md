@@ -32,7 +32,7 @@ Introductory Ansible training for roles interested in automating common data cen
 
 ### <a name="lab-env">The Environment</a>
 
-The labs will use an environment consisting of:
+The lab environment consists of:
 1.  Individual GitHub accounts and source code repositories.  Each attendee will need to have their own GitHub account (see Prerequisites).
 2.  Ansible Automation Tower.
 3.  Amazon AWS.
@@ -51,9 +51,9 @@ There are no other prerequisites or software required on your workstation other 
 
 ### <a name="lab-1">Lab 1: Provision EC2 Instance & Deploy Sample Application</a>
 
-This lab will provision a small virtual machine on AWS and deploy a simple web application to it.
+This lab will provision a small virtual machine on AWS and then deploy a simple web application to it.
 
-1. All artifacts needed to complete this demo are in the fiveout/mysidlab-infra repository on GitHub.  You should fork this repository to your personal GitHub account.
+1. All artifacts needed to complete this lab are in the `fiveout/mysidlab-infra` repository on GitHub.  You should fork this repository to your personal GitHub account.
     1.  Make sure you're logged in to GitHub and go to https://github.com/fiveout/mysidlab-infra.
 
     1.  Fork (ie. make a copy of) this repository by selecting "Fork".
@@ -62,34 +62,37 @@ This lab will provision a small virtual machine on AWS and deploy a simple web a
 
     A copy of the repository will be created and located in your GitHub workspace.  Note that that URL will have changed to reflect your individual account.
 
-    Take note of that new URL by selecting "Clone or download" and then copying it to your clipboard.  You'll need this URL when configuring your Ansible Tower project.  
+    1. Take note of that new URL by selecting "Clone or download" and then copying it to your clipboard.  You'll need this URL when configuring your Ansible Tower project.  
 
     ![GitHub URL](images/github-url.png)
 
 1. Open The Red Hat Ansible Tower administration console in your browser by going to https://tower.mysidlabs.com.  Note: If you are warned about an invalid certificate, you can acknowledge the warning and continue.
 
 1. Login with your assigned USERNAME (siduser1-siduser12) and PASSWORD.
+
 ![Login Page](images/login.png)
 
-#### The first step in configuring Ansible Tower is to create an integration to the personal GitHub repository that you created above.  This is done by creating a new Project in Tower.
+#### The first step in configuring Ansible Tower is to add a connection to the personal GitHub repository that you created above.  This is done by creating a new Project in Tower.
 
-4.  Choose Project from the left-hand navigation menu and then the green "+" to add a new project.  Complete and save the new project information as below.  Note that the "SCM URL" field should contain the GitHub repository URL you copied to your clipboard previously.
+4.  Choose Project from the left-hand navigation menu and then the green "+" to add a new project.  Complete and save the  project information as below.  Note that the "SCM URL" field should contain the GitHub repository URL you copied to your clipboard previously.
+
 ![Tower Project](images/tower-create-project.png)
 
-#### You can now configure Ansible Tower to run an automation job that is in your GitHub repository.  This job will provision as small VM instance on AWS and then deploy a simple web app to it.
+#### You can now configure Ansible Tower to run an automation job that is in your GitHub repository.  This job will provision a small VM instance on AWS and then deploy a simple web app to it.
 
-5.  Choose Template from the left-hand navigation menu and then the green "+" to add a new template.  Complete and save the new template information as below.
+5.  Choose Template from the left-hand navigation menu and then the green "+" to add a new template.  Complete and save the new template information as below.  The "PROJECT" field should reference the new Project you created previously.
+
 ![Tower Template](images/tower-create-template.png)
 
 #### Let's take a look at the two YAML documents that define the "steps" that Ansible will take.  In your GitHub repository, open the aws_sandbox_deploy.yml document.  A few things to note --
 
-a. The "vars" section defines several variables that will be passed to AWS when the VM instance is provisioned.
+a. The "vars" section defines several variables that will be used by Ansible's built-in AWS API to provision the VM instance.
 
-b. The "tasks" section defines a series of "state requirements" that will be reviewed to make sure that they exist.
+b. The "tasks" section defines a series of "state requirements" that will be reviewed to make sure that they exist on that VM.
 
-c. The final entry (Ensure sample application is available) references a role that is defined seperately in the roles/my_awesome_role directory of your repository.  This referenced role will be executed as the final step of the job.
+c. The final entry (Ensure sample application is available) references an Ansible role that is defined seperately in the roles/my_awesome_role directory of your repository.  This role will be executed as the final step of the job.
 
-6. After your Template definition has been saved, you can create and run a Job based off it.  Select Template from the left-hand navigation menu and then click the rocket icon next to your template to create and execute the Job.
+6. After your Template definition has been saved, you can create and run a Job based on it.  Select Template from the left-hand navigation menu and then click the rocket icon next to your template to create and execute the Job.
 
     A running log of the job actions will be displayed and refreshed automatically.
 
@@ -99,7 +102,7 @@ c. The final entry (Ensure sample application is available) references a role th
 
     ![Tower Job Recap](images/tower-job-recap.png)
 
-8. Confirm that the VM instance was created and the demo web app was deployed properly by running the application at the IP address in the recap.
+8. Confirm that the VM instance was created and the demo web app was deployed properly by running the application at the IP address in the recap.  The address is the public IP of the provisioned VM instance.
 
     ![Demo App](images/demoapp.png)
 
