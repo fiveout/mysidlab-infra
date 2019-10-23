@@ -25,25 +25,25 @@
           location: ohio-ansible-cluster
       register: ec2
 
-    - name: Add new instance to host group
+    - name: Ensure new instance is in host group
       add_host:
         hostname: "{{ item.public_ip }}"
         groupname: launched
       loop: "{{ ec2.instances }}"
 
-    - name: Wait for SSH to come up
+    - name: Ensure that SSH is available
       delegate_to: "{{ item.public_dns_name }}"
       wait_for_connection:
         delay: 60
         timeout: 320
       loop: "{{ ec2.instances }}"
     
-    - name: Print out ip of instance
+    - name: Dump core instance config
       debug:
         msg: "IP of new instance(s): {{ item.public_ip }}"
       loop: "{{ ec2.instances }}"
 
-- name: Configure instance(s)
+- name: Ensure sample application is available
   hosts: launched
   become: True
   gather_facts: True
