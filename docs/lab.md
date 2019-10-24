@@ -76,7 +76,7 @@ This lab will provision a small virtual machine on AWS and then deploy a simple 
 
 4.  Choose Project from the left-hand navigation menu and then the green "+" to add a new project.  Complete and save the  project information as below.  Note that the "SCM URL" field should contain the GitHub repository URL you copied to your clipboard previously.
 
-![Tower Project](images/tower-create-project.png)
+![Tower Project.](images/tower-create-project.png)
 
 #### You can now configure Ansible Tower to run an automation job that is in your GitHub repository.  This job will provision a small VM instance on AWS and then deploy a simple web app to it.
 
