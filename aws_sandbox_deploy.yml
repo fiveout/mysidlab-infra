@@ -31,7 +31,7 @@
         groupname: launched
       loop: "{{ ec2.instances }}"
 
-    - name: Ensure that SSH is available
+    - name: Pause ansible run and wait for AWS instance to come up and ssh to be available
       delegate_to: "{{ item.public_dns_name }}"
       wait_for_connection:
         delay: 60
