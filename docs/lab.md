@@ -74,7 +74,7 @@ This lab will provision a small virtual machine on AWS and then deploy a simple 
 
 #### You can now configure Ansible Tower to run an automation job that is in your GitHub repository.  This job will provision a small VM instance on AWS and then deploy a simple web app to it.
 
-5.  Choose Template from the left-hand navigation menu and then the green "+" to add a new template. Select "Job Template".  Complete and save the new template information as below.  The "PROJECT" field should reference the new Project you created previously.
+5.  Choose Template from the left-hand navigation menu and then the green "+" to add a new template. Select "Job Template".  Complete and save the new template information as below.  The "PROJECT" field should reference the new Project you created previously. The "ORGANIZATION" field should reference "sid-org". Note that the AWS API Key can be found in the Amazon Web Services credential category.
 
 ![Tower Template](images/tower-create-template.png)
 
