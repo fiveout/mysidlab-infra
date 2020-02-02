@@ -1,0 +1,30 @@
+ ---
+
+- name: Configure instance
+  hosts: all
+  gather_facts: False
+  become: true
+  vars:
+    hostname: taranto-cateyes
+    tz: Antarctica/McMurdo
+    token: T04NJ722U/BQB4MBBHV/RZPNWsz38MD1WtuVcena5reb
+    
+  tasks:
+    - name: Set timezone to "{{ tz }}"
+      timezone:
+        name: "{{ tz }}"
+    - name: Display new timezone
+      shell: date +%Z     
+    
+    - name: Set hostname
+      hostname:
+        name: "{{ hostname }}"
+          
+    - name: Dump host facts
+      setup: 
+
+    - name: Send host config notification
+      slack:
+        token: "{{ token }}"
+        msg: "Host {{ hostname }} is now in {{ tz }}"
+     
