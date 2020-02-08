@@ -23,6 +23,7 @@
         instance_tags:
           Name: "Jonathan's Awesome Instance"
           location: ohio-ansible-cluster
+          source: sid
       register: ec2
 
     - name: Ensure new instance is in host group
