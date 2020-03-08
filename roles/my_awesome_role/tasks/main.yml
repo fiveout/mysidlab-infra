@@ -9,6 +9,7 @@
     - wget
     - httpd
     - httpd-tools
+    - htop
 
 # Configure apache
 - name: Ensure httpd is running
